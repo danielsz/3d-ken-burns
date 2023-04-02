@@ -65,8 +65,8 @@ if __name__ == '__main__':
 
 	fltRatio = float(intWidth) / float(intHeight)
 
-	intWidth = min(int(1024 * fltRatio), 1024)
-	intHeight = min(int(1024 / fltRatio), 1024)
+	intWidth = min(int(1280 * fltRatio), 1280)
+	intHeight = min(int(1280 / fltRatio), 1280)
 
 	npyImage = cv2.resize(src=npyImage, dsize=(intWidth, intHeight), fx=0.0, fy=0.0, interpolation=cv2.INTER_AREA)
 
@@ -81,16 +81,16 @@ if __name__ == '__main__':
 
 	objTo = process_autozoom({
 		'fltShift': 100.0,
-		'fltZoom': 1.25,
+		'fltZoom': 2,
 		'objFrom': objFrom
 	})
 
 	npyResult = process_kenburns({
-		'fltSteps': numpy.linspace(0.0, 1.0, 75).tolist(),
+		'fltSteps': numpy.linspace(0.0, 1.0, 500).tolist(),
 		'objFrom': objFrom,
 		'objTo': objTo,
 		'boolInpaint': True
 	})
 
-	moviepy.editor.ImageSequenceClip(sequence=[ npyFrame[:, :, ::-1] for npyFrame in npyResult + list(reversed(npyResult))[1:-1] ], fps=25).write_videofile(arguments_strOut)
+	moviepy.editor.ImageSequenceClip(sequence=[ npyFrame[:, :, ::-1] for npyFrame in npyResult [1:-1] ], fps=30).write_videofile(arguments_strOut)
 # end
