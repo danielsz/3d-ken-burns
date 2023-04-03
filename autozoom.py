@@ -92,5 +92,5 @@ if __name__ == '__main__':
 		'boolInpaint': True
 	})
 
-	moviepy.editor.ImageSequenceClip(sequence=[ npyFrame[:, :, ::-1] for npyFrame in npyResult , fps=30).write_videofile(arguments_strOut)
+	moviepy.editor.ImageSequenceClip(sequence=[ npyFrame[:, :, ::-1] for npyFrame in npyResult ], fps=30).write_videofile(arguments_strOut)
 # end
